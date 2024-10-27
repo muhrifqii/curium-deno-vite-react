@@ -1,0 +1,13 @@
+description: Prepares the repo with Deno actions
+name: Prepare
+
+runs:
+  steps:
+    - name: Install Deno 2.x
+      uses: denoland/setup-deno@v2
+      with:
+        deno-version: v2.x
+    - name: Install dependencies
+      run: deno install
+      shell: bash
+  using: composite
