@@ -22,7 +22,7 @@ function withAuth<
     if (request.headers.get('Authorization') !== `Bearer ${accessToken}`) {
       return HttpResponse.json(null, { status: 401 });
     }
-    return resolver(input);
+    return await resolver(input);
   };
 }
 
@@ -69,7 +69,7 @@ export const handlers = [
       );
     },
   ),
-  http.post('*/refreshToken', async () => {
+  http.post('*/refreshToken', () => {
     return HttpResponse.json({
       access_token: accessToken,
       refresh_token: nanoid(),
